@@ -1,21 +1,23 @@
 {
-    "builders": [
-        {
-            "type": "amazon-ebs",
-            "source_ami_filter": {
-                "filters": {
-                    "virtualization-type": "hvm",
-                    "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
-                    "root-device-type": "ebs"
-                },
-                "owners": [
-                    "099720109477"
-                ],
-                "most_recent": true
-            },
-            "instance_type": "t2.micro",
-            "ssh_username": "ubuntu",
-            "ami_name": "packer-example {{timestamp}}"
-        }
-    ]
-}
+    "builders": [{
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "ap-northeast-1",
+      "source_ami": "ami-4985b048",
+      "instance_type": "t2.small",
+      "ssh_username": "ec2-user",
+      "ssh_timeout": "5m",
+      "ami_name": "Web_{{isotime | clean_ami_name}}"
+    }],
+    "provisioners": [{
+      "type": "shell",
+      "inline": [
+        "sudo yum -y update",
+        "sudo yum -y --enablerepo=epel install ansible"
+      ]
+     },{
+      "type": "ansible-local",
+      "playbook_file": "setup.yml"
+    }]
+  }
