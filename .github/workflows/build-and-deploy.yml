@@ -1,6 +1,14 @@
 # https://github.com/hashicorp/setup-packer
 name: packer
 
+# allow use id-token
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_ROLE_ARN: arn:aws:iam::381115583835:role/github-actions-oidc-test0209
+
 on:
   - push
 
@@ -11,6 +19,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: credential
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ap-northeast-1
 
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
