@@ -12,7 +12,7 @@
       "type": "shell",
       "inline": [
         "sudo yum -y update",
-        "sudo yum -y install ansible"
+        "sudo yum -y --enablerepo=epel install ansible"
       ]
      },{
       "type": "ansible-local",
