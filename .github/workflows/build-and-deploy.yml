@@ -4,7 +4,7 @@ on:
   push
 
 env:
-  AWS_ROLE_ARN: arn:aws:iam::XXXXXXXXXXXX:role/GitHubActionsOIDC
+  AWS_ROLE_ARN: arn:aws:iam::381115583835:role/github-actions-oidc-test0209
 
 jobs:
   build:
