@@ -1,7 +1,7 @@
 name: Build and Deploy
 
 on:
-  push:
+  push
 
 env:
   AWS_ROLE_ARN: arn:aws:iam::XXXXXXXXXXXX:role/GitHubActionsOIDC
