@@ -27,5 +27,5 @@ jobs:
         run: "packer validate ./packer.pkr.hcl"
 
       - name: Run `packer build`
-        id: init
+        id: build
         run: "packer build ./packer.pkr.hcl"
