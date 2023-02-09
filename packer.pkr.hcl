@@ -13,6 +13,17 @@ variable "ami_prefix" {
   default = "test"
 }
 
+variable "ansible_host" {
+  type    = string
+  default = "default"
+}
+
+variable "ansible_connection" {
+  type    = string
+  default = "docker"
+}
+
+
 
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
@@ -50,6 +61,8 @@ build {
     playbook_file = "setup.yml"
     extra_arguments = [
       "-vvvv",
-    ]
+      "--extra-vars",
+      "ansible_host=${var.ansible_host} ansible_connection=${var.ansible_connection}"
+    ],
   }
 }
