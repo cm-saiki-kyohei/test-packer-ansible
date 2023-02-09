@@ -3,6 +3,11 @@ name: Build and Deploy
 on:
   push
 
+# allow use id-token
+permissions:
+  id-token: write
+  contents: read
+
 env:
   AWS_ROLE_ARN: arn:aws:iam::381115583835:role/github-actions-oidc-test0209
 
