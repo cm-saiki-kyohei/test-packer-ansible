@@ -1,5 +1,5 @@
 - hosts: all
-  sudo: yes
+  become: yes
   tasks:
    - name: install Apache24 and mysql client
      yum: pkg={{item}} state=installed
