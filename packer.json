@@ -11,8 +11,8 @@
     "provisioners": [{
       "type": "shell",
       "inline": [
-        "sudo apt -y update",
-        "sudo apt -y install ansible"
+        "sudo yum -y update",
+        "sudo yum -y install ansible"
       ]
      },{
       "type": "ansible-local",
