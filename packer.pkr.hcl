@@ -61,8 +61,7 @@ build {
     playbook_file = "setup.yml"
     extra_arguments = [
       "-vvvv",
-      "--extra-vars",
-      "ansible_host=${var.ansible_host} ansible_connection=${var.ansible_connection}"
     ]
+    user = ubuntu
   }
 }
