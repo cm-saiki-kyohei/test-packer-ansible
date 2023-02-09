@@ -47,7 +47,7 @@ build {
     "source.amazon-ebs.ubuntu"
   ]
 
-  provisioner "ansible-local" {
+  provisioner "ansible" {
     playbook_file = "setup.yml"
     extra_arguments = [
       "-vvvv",
