@@ -52,6 +52,6 @@ build {
     extra_arguments = [
       "-vvvv",
     ]
-    // user = "root"
+    user = "ubuntu"
   }
 }
