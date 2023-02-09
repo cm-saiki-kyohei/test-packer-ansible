@@ -13,16 +13,6 @@ variable "ami_prefix" {
   default = "test"
 }
 
-variable "ansible_host" {
-  type    = string
-  default = "default"
-}
-
-variable "ansible_connection" {
-  type    = string
-  default = "docker"
-}
-
 
 
 locals {
@@ -62,6 +52,6 @@ build {
     extra_arguments = [
       "-vvvv",
     ]
-    user = ubuntu
+    user = "ubuntu"
   }
 }
