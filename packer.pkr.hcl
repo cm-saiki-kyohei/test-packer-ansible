@@ -63,6 +63,6 @@ build {
       "-vvvv",
       "--extra-vars",
       "ansible_host=${var.ansible_host} ansible_connection=${var.ansible_connection}"
-    ],
+    ]
   }
 }
