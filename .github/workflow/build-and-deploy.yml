@@ -1,0 +1,25 @@
+name: Build and Deploy
+
+on:
+  push:
+
+env:
+  AWS_ROLE_ARN: arn:aws:iam::XXXXXXXXXXXX:role/GitHubActionsOIDC
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ap-northeast-1
+      - name: packer validate packer.json
+        uses: docker://hashicorp/packer:latest
+        with:
+          args: validate packer.json
+      - name: packer build packer.json
+        uses: docker://hashicorp/packer:latest
+        with:
+          args: build packer.json
