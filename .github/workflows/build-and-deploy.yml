@@ -1,30 +1,31 @@
-name: Build and Deploy
+# https://github.com/hashicorp/setup-packer
+name: packer
 
 on:
-  push
-
-# allow use id-token
-permissions:
-  id-token: write
-  contents: read
-
-env:
-  AWS_ROLE_ARN: arn:aws:iam::381115583835:role/github-actions-oidc-test0209
+  - push
 
 jobs:
-  build:
+  packer:
     runs-on: ubuntu-latest
+    name: Run Packer
     steps:
-      - uses: actions/checkout@v3
-      - uses: aws-actions/configure-aws-credentials@v1
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
         with:
-          role-to-assume: ${{ env.AWS_ROLE_ARN }}
-          aws-region: ap-northeast-1
-      - name: packer validate packer.json
-        uses: docker://hashicorp/packer:latest
-        with:
-          args: validate packer.json
-      - name: packer build packer.json
-        uses: docker://hashicorp/packer:latest
-        with:
-          args: build packer.json
+          version: "1.8.3" # or `latest`
+
+      - name: Run `packer init`
+        id: init
+        run: "packer init ./packer.pkr.hcl"
+
+      - name: Run `packer validate`
+        id: validate
+        run: "packer validate ./packer.pkr.hcl"
+
+      - name: Run `packer build`
+        id: init
+        run: "packer build ./packer.pkr.hcl"
