@@ -18,10 +18,16 @@ jobs:
 
     name: Run Packer
     steps:
-      - name: Install dependencies
+      - name: install pipenv
         run: |
-          pip install pipenv
-          pipenv sync --dev
+          python -m pip install --upgrade pip
+          python -m pip install pipenv
+
+      - name: lock package version
+        run: pipenv lock
+
+      - name: install packages
+        run: pipenv sync --dev
 
       - name: Checkout
         uses: actions/checkout@v3
