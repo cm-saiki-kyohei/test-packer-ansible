@@ -43,3 +43,7 @@ jobs:
       - name: Run `packer build`
         id: build
         run: "packer build ./packer.pkr.hcl"
+
+# galaxy
+# lfs
+# pipenv install

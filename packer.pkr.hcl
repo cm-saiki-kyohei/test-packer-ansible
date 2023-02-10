@@ -52,5 +52,6 @@ build {
     extra_arguments = [
       "-vvvv",
     ]
+    galaxy_command = "ansible-galaxy install -r requirements.yml"
   }
 }
