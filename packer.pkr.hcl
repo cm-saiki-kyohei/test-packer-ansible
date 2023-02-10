@@ -49,9 +49,9 @@ build {
 
   provisioner "ansible" {
     playbook_file = "setup.yml"
+    galaxy_command = "ansible-galaxy install -r requirements.yml"
     extra_arguments = [
       "-vvvv",
     ]
-    galaxy_command = "ansible-galaxy install -r requirements.yml"
   }
 }
