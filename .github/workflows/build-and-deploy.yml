@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          lfs: true
 
       - name: credential
         uses: aws-actions/configure-aws-credentials@v1
@@ -44,6 +46,4 @@ jobs:
         id: build
         run: "packer build ./packer.pkr.hcl"
 
-# galaxy
-# lfs
 # pipenv install
