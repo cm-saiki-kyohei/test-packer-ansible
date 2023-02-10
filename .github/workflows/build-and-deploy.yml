@@ -15,8 +15,14 @@ on:
 jobs:
   packer:
     runs-on: ubuntu-latest
+
     name: Run Packer
     steps:
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv sync --dev
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -45,5 +51,3 @@ jobs:
       - name: Run `packer build`
         id: build
         run: "packer build ./packer.pkr.hcl"
-
-# pipenv install
